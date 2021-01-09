@@ -22,4 +22,9 @@ export class AppService {
     return this.songsPlayed;
   }
 
+  getGreatestSongsOfAllTime(): SongPlay[] {
+    return this.songsPlayed.filter(
+      (song) => song.trackName === "Kiss from a Rose"
+    );
+  }
 }

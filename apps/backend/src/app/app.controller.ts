@@ -10,7 +10,14 @@ export class AppController {
   @Get()
   getData(): SongsResponse {
     return {
-      songPlays: this.appService.getSongsPlayed()
+      songPlays: this.appService.getSongsPlayed(),
+    };
+  }
+
+  @Get("greatestSongsOfAllTime")
+  getGreatestSongsOfAllTime(): SongsResponse {
+    return {
+      songPlays: this.appService.getGreatestSongsOfAllTime(),
     };
   }
 }
