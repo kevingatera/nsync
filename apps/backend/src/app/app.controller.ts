@@ -20,4 +20,11 @@ export class AppController {
       songPlays: this.appService.getGreatestSongsOfAllTime(),
     };
   }
+
+  @Get("listened")
+  getListened(): SongsResponse {
+    return {
+      songPlays: this.appService.getListened(),
+    };
+  }
 }

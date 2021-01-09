@@ -27,4 +27,9 @@ export class AppService {
       (song) => song.trackName === "Kiss from a Rose"
     );
   }
+
+  getListened(): SongPlay[] {
+    // Listened songs are those that have beeen listened to for more than 1 second or 1000ms
+    return this.songsPlayed.filter((song) => song.msPlayed > 1);
+  }
 }
