@@ -32,4 +32,9 @@ export class AppService {
     // Listened songs are those that have beeen listened to for more than 1 second or 1000ms
     return this.songsPlayed.filter((song) => song.msPlayed > 1);
   }
+
+  getByBand(bandName): SongPlay[] {
+    // Songs are those that have a similar band/artist name
+    return this.songsPlayed.filter((song) => song.artistName.match(bandName));
+  }
 }

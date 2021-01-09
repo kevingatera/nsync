@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { SongsResponse } from "@nsync/data";
 
 import { AppService } from "./app.service";
@@ -25,6 +25,13 @@ export class AppController {
   getListened(): SongsResponse {
     return {
       songPlays: this.appService.getListened(),
+    };
+  }
+
+  @Get("search")
+  getByBand(@Query() queryParams): SongsResponse {
+    return {
+      songPlays: this.appService.getByBand(queryParams.band),
     };
   }
 }
