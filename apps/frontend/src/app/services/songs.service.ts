@@ -8,9 +8,11 @@ import { SongPlay, SongsResponse } from '@nsync/data';
 export class SongsService {
 
   songs: SongPlay[];
+  listenedSongs: SongPlay[];
 
   constructor(private http: HttpClient) { 
     this.fetchSongs();
+    this.fetchMultiListenedSongs(false);
   }
 
   fetchSongs(): void {
@@ -18,4 +20,21 @@ export class SongsService {
       this.songs = response.songPlays;
     });
   }
+
+  fetchMultiListenedSongs(dupsAllowed): void {
+    this.http.get<SongsResponse>('/songs/listened').subscribe(response => {
+      
+      let listened: SongPlay[];
+      
+      // Remove duplicates
+      if(dupsAllowed) {
+        listened = response.songPlays;
+      } else {
+        listened = [ ...new Set(response.songPlays) ];
+      }
+      
+      this.listenedSongs = listened;
+    });
+  }
+
 }
